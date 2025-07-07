@@ -169,7 +169,7 @@ const About: React.FC = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .highlight-word {
           background: linear-gradient(135deg, #1d6496 0%, #c4ffce 100%);
           -webkit-background-clip: text;
