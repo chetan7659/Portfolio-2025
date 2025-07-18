@@ -18,7 +18,6 @@ const TechStack: React.FC = () => {
     { name: 'Python', category: 'languages', color: 'from-blue-500 to-yellow-500', level: 95 },
     { name: 'C', category: 'languages', color: 'from-blue-600 to-blue-400', level: 85 },
     { name: 'SQL', category: 'languages', color: 'from-orange-500 to-red-500', level: 90 },
-    { name: 'JavaScript', category: 'languages', color: 'from-yellow-400 to-yellow-600', level: 80 },
     { name: 'Scikit-learn', category: 'ml', color: 'from-orange-500 to-red-500', level: 95 },
     { name: 'TensorFlow', category: 'ml', color: 'from-orange-600 to-red-600', level: 90 },
     { name: 'PyTorch', category: 'ml', color: 'from-red-500 to-pink-500', level: 85 },

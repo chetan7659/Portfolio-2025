@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Moon, Sun, Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 
 const Navbar: React.FC = () => {
   const { isDark, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,12 +20,13 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Education', href: '#education' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/', isExternal: false },
+    { name: 'Education', href: '#education', isExternal: true },
+    { name: 'Projects', href: '/projects', isExternal: false },
+    { name: 'LinuxWorldTasks', href: '/linuxworld', isExternal: false },
+    { name: 'Skills', href: '#skills', isExternal: true },
+    { name: 'About', href: '#about', isExternal: true },
+    { name: 'Contact', href: '#contact', isExternal: true },
   ];
 
   return (
@@ -38,26 +41,37 @@ const Navbar: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-xl font-bold gradient-text"
-          >
-            CS
-          </motion.div>
+          
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <motion.a
-                key={item.name}
-                href={item.href}
-                className="text-gray-300 hover:text-white transition-colors duration-200 relative group"
-                whileHover={{ y: -2 }}
-              >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-green-400 transition-all duration-300 group-hover:w-full"></span>
-              </motion.a>
+              item.isExternal ? (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  className="text-gray-300 hover:text-white transition-colors duration-200 relative group"
+                  whileHover={{ y: -2 }}
+                >
+                  {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-green-400 transition-all duration-300 group-hover:w-full"></span>
+                </motion.a>
+              ) : (
+                <motion.div
+                  key={item.name}
+                  whileHover={{ y: -2 }}
+                >
+                  <Link
+                    to={item.href}
+                    className={`text-gray-300 hover:text-white transition-colors duration-200 relative group ${
+                      location.pathname === item.href ? 'text-white' : ''
+                    }`}
+                  >
+                    {item.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-green-400 transition-all duration-300 group-hover:w-full"></span>
+                  </Link>
+                </motion.div>
+              )
             ))}
           </div>
 
@@ -95,14 +109,27 @@ const Navbar: React.FC = () => {
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md transition-colors duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.name}
-              </a>
+              item.isExternal ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md transition-colors duration-200 ${
+                    location.pathname === item.href ? 'text-white bg-white/10' : ''
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </div>
         </motion.div>

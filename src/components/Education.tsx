@@ -19,14 +19,6 @@ const Education: React.FC = () => {
       status: 'Completed',
       description: 'Foundation in Computer Science with focus on Software Development',
     },
-    {
-      degree: 'GATE 2024 Qualified',
-      institution: 'Computer Science',
-      period: '2024',
-      status: 'Qualified',
-      isAchievement: true,
-      description: 'All India Level Examination for Post Graduate Admissions',
-    },
   ];
 
   return (
@@ -65,15 +57,11 @@ const Education: React.FC = () => {
                       <img
                         src={item.logo}
                         alt={item.institution}
-                        className="w-16 h-16 rounded-lg object-contain floating-animation"
+                        className="w-16 h-16 rounded-lg object-contain floating-animation bg-white/10 p-2"
                       />
                     ) : (
                       <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-400 rounded-lg flex items-center justify-center">
-                        {item.isAchievement ? (
-                          <Award className="w-8 h-8 text-white" />
-                        ) : (
-                          <GraduationCap className="w-8 h-8 text-white" />
-                        )}
+                        <GraduationCap className="w-8 h-8 text-white" />
                       </div>
                     )}
                   </div>
@@ -112,15 +100,15 @@ const Education: React.FC = () => {
         {/* DIAT Logo Floating */}
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 0.1, scale: 1 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
           viewport={{ once: true }}
-          className="absolute top-10 right-10 w-32 h-32 opacity-5"
+          className="absolute top-10 right-10 w-40 h-40 z-10"
         >
           <img
             src="https://upload.wikimedia.org/wikipedia/en/6/67/Defence_Institute_of_Advanced_Technology.png"
             alt="DIAT Logo"
-            className="w-full h-full object-contain floating-animation"
+            className="w-full h-full object-contain floating-animation rounded-lg p-0"
           />
         </motion.div>
       </div>

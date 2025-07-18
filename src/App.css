@@ -11,17 +11,28 @@ body {
   background-color: #0a0a0a;
   color: #ffffff;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Data Science SVG Network Background */
+.data-science-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.13;
+  background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.5"><circle cx="200" cy="200" r="2" fill="%23c4ffce"/><circle cx="400" cy="400" r="2" fill="%231d6496"/><circle cx="1200" cy="300" r="2" fill="%231d6496"/><circle cx="900" cy="700" r="2" fill="%23c4ffce"/><circle cx="700" cy="200" r="2" fill="%231d6496"/><circle cx="1100" cy="600" r="2" fill="%23c4ffce"/><line x1="200" y1="200" x2="400" y2="400" stroke="%23c4ffce" stroke-width="1"/><line x1="400" y1="400" x2="1200" y2="300" stroke="%231d6496" stroke-width="1"/><line x1="1200" y1="300" x2="900" y2="700" stroke="%23c4ffce" stroke-width="1"/><line x1="900" y1="700" x2="700" y2="200" stroke="%231d6496" stroke-width="1"/><line x1="700" y1="200" x2="1100" y2="600" stroke="%23c4ffce" stroke-width="1"/></g></svg>') center center/cover no-repeat;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #1d6496 0%, #c4ffce 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #06b6d4 50%, #6366f1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, #1d6496 0%, #c4ffce 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #06b6d4 50%, #6366f1 100%);
 }
 
 .glass-effect {
@@ -39,12 +50,12 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #1d6496 0%, #c4ffce 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
   border-radius: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #2a75a8 0%, #d4ffe0 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
 }
 
 html {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Cloud, Brain, Eye } from 'lucide-react';
+import { ExternalLink, Github, Cloud, Brain, Eye, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Projects: React.FC = () => {
   const projects = [
@@ -59,7 +60,7 @@ const Projects: React.FC = () => {
             <span className="gradient-text">Featured Projects</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Innovative solutions leveraging AI, ML, and cloud technologies
+            A glimpse of my work in AI, ML, and cloud technologies
           </p>
         </motion.div>
 
@@ -147,6 +148,23 @@ const Projects: React.FC = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* View All Projects Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <Link
+            to="/projects"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-green-400 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-green-500 transition-all duration-300 group"
+          >
+            <span>View All Projects</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

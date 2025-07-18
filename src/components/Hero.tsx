@@ -128,31 +128,19 @@ const Hero: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Profile Photo with Video on Hover */}
+          {/* Right Column - Profile Photo Only */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative group flex flex-col items-center"
+            className="relative flex flex-col items-center"
           >
-            <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-gradient-to-r from-blue-500 to-green-400 shadow-lg group">
+            <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-gradient-to-r from-blue-500 to-green-400 shadow-lg flex items-center justify-center">
               <img
                 src="/profile-photo.jpg"
                 alt="Chetan Sethy"
-                className="w-full h-full object-cover rounded-full transition-opacity duration-300 group-hover:opacity-0"
+                className="w-full h-full object-cover rounded-full"
               />
-              <video
-                src="/video-resume.mp4"
-                className="absolute inset-0 w-full h-full object-cover rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
-            </div>
-            <div className="mt-4 text-center">
-              <h3 className="text-lg font-semibold text-white">Video Resume</h3>
-              <p className="text-gray-400 text-sm">Hover to play my introduction</p>
             </div>
           </motion.div>
         </div>

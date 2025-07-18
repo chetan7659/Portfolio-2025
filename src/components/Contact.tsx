@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { Mail, Phone, MapPin, Send, Download, Linkedin, Github, CheckCircle } from 'lucide-react';
+import { useRef } from 'react';
 
 interface FormData {
   name: string;
@@ -10,25 +11,39 @@ interface FormData {
   message: string;
 }
 
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnqewqzv'; // Replace with your actual Formspree endpoint if different
+
 const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
+  const formRef = useRef<HTMLFormElement>(null);
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+    setSubmitError(null);
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        setIsSubmitted(true);
+        reset();
+        setTimeout(() => setIsSubmitted(false), 3000);
+      } else {
+        setSubmitError('Failed to send message. Please try again later.');
+      }
+    } catch (error) {
+      setSubmitError('Failed to send message. Please try again later.');
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      reset();
-      
-      // Reset success message after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 3000);
-    }, 2000);
+    }
   };
 
   const contactInfo = [
@@ -125,14 +140,16 @@ const Contact: React.FC = () => {
                 viewport={{ once: true }}
                 className="glass-effect rounded-2xl p-6"
               >
-                <motion.button
+                <motion.a
+                  href="/resume.pdf"
+                  download
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-600 to-green-400 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-green-500 transition-all duration-300"
                 >
                   <Download className="w-5 h-5" />
                   Download Resume
-                </motion.button>
+                </motion.a>
               </motion.div>
 
               {/* Social Links */}
@@ -181,12 +198,12 @@ const Contact: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center py-12"
               >
-                <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
+                <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4 animate-bounce" />
                 <h4 className="text-xl font-semibold text-white mb-2">Message Sent!</h4>
                 <p className="text-gray-400">Thank you for reaching out. I'll get back to you soon.</p>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -195,12 +212,10 @@ const Contact: React.FC = () => {
                     <input
                       type="text"
                       {...register('name', { required: 'Name is required' })}
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className={`w-full px-4 py-3 bg-white/10 border ${errors.name ? 'border-red-500' : 'border-white/20'} rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300`}
                       placeholder="Your name"
                     />
-                    {errors.name && (
-                      <span className="text-red-400 text-sm mt-1">{errors.name.message}</span>
-                    )}
+                    {errors.name && <span className="text-red-400 text-xs mt-1 block">{errors.name.message}</span>}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -208,22 +223,19 @@ const Contact: React.FC = () => {
                     </label>
                     <input
                       type="email"
-                      {...register('email', { 
+                      {...register('email', {
                         required: 'Email is required',
                         pattern: {
-                          value: /^\S+@\S+$/i,
-                          message: 'Invalid email address'
-                        }
+                          value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                          message: 'Invalid email address',
+                        },
                       })}
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      placeholder="your@email.com"
+                      className={`w-full px-4 py-3 bg-white/10 border ${errors.email ? 'border-red-500' : 'border-white/20'} rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300`}
+                      placeholder="Your email"
                     />
-                    {errors.email && (
-                      <span className="text-red-400 text-sm mt-1">{errors.email.message}</span>
-                    )}
+                    {errors.email && <span className="text-red-400 text-xs mt-1 block">{errors.email.message}</span>}
                   </div>
                 </div>
-
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
                     Subject
@@ -231,48 +243,37 @@ const Contact: React.FC = () => {
                   <input
                     type="text"
                     {...register('subject', { required: 'Subject is required' })}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                    placeholder="What's this about?"
+                    className={`w-full px-4 py-3 bg-white/10 border ${errors.subject ? 'border-red-500' : 'border-white/20'} rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300`}
+                    placeholder="Subject"
                   />
-                  {errors.subject && (
-                    <span className="text-red-400 text-sm mt-1">{errors.subject.message}</span>
-                  )}
+                  {errors.subject && <span className="text-red-400 text-xs mt-1 block">{errors.subject.message}</span>}
                 </div>
-
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
                     Message
                   </label>
                   <textarea
+                    rows={5}
                     {...register('message', { required: 'Message is required' })}
-                    rows={6}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
-                    placeholder="Tell me about your project..."
+                    className={`w-full px-4 py-3 bg-white/10 border ${errors.message ? 'border-red-500' : 'border-white/20'} rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300`}
+                    placeholder="Your message"
                   />
-                  {errors.message && (
-                    <span className="text-red-400 text-sm mt-1">{errors.message.message}</span>
-                  )}
+                  {errors.message && <span className="text-red-400 text-xs mt-1 block">{errors.message.message}</span>}
                 </div>
-
-                <motion.button
+                {submitError && <div className="text-red-400 text-center mb-2">{submitError}</div>}
+                <button
                   type="submit"
                   disabled={isSubmitting}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-600 to-green-400 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-green-500 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-600 to-green-400 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-green-500 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5" />
-                      Send Message
-                    </>
+                  {isSubmitting && (
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                    </svg>
                   )}
-                </motion.button>
+                  Send Message
+                </button>
               </form>
             )}
           </motion.div>
