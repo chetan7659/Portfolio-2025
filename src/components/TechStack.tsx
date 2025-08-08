@@ -34,6 +34,27 @@ const TechStack: React.FC = () => {
     { name: 'Seaborn', category: 'visualization', color: 'from-blue-600 to-purple-600', level: 85 },
   ];
 
+  // Map technology names to logo image filenames (ensure these files are in public/)
+  const techLogos: Record<string, string> = {
+    Python: '/python.png',
+    C: '/c.png',
+    SQL: '/sql.png',
+    'Scikit-learn': '/scikit-learn.png',
+    TensorFlow: '/tensorflow.png',
+    PyTorch: '/pytorch.png',
+    Keras: '/keras.png',
+    AWS: '/aws.png',
+    Docker: '/docker.png',
+    Kubernetes: '/kubernetes.png',
+    Jenkins: '/jenkins.png',
+    Terraform: '/terraform.png',
+    MySQL: '/mysql.png',
+    MongoDB: '/mongodb.png',
+    'Power BI': '/powerbi.png',
+    Matplotlib: '/matplotlib.png',
+    Seaborn: '/seaborn.png',
+  };
+
   const filteredTechnologies = selectedCategory === 'all' 
     ? technologies 
     : technologies.filter(tech => tech.category === selectedCategory);
@@ -150,7 +171,11 @@ const TechStack: React.FC = () => {
             >
               <div className="glass-effect rounded-2xl p-6 text-center hover:bg-white/15 transition-all duration-300 cursor-pointer">
                 <div className={`w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-r ${tech.color} flex items-center justify-center text-white font-bold text-xl`}>
-                  {tech.name.charAt(0)}
+                  {techLogos[tech.name] ? (
+                    <img src={techLogos[tech.name]} alt={tech.name + ' logo'} className="w-8 h-8 object-contain" />
+                  ) : (
+                    tech.name.charAt(0)
+                  )}
                 </div>
                 <h3 className="text-sm font-semibold text-white mb-2">{tech.name}</h3>
                 <div className="w-full bg-white/20 rounded-full h-2">
