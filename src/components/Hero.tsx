@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Play } from 'lucide-react';
+import { ChevronDown, Play, Download, Mail } from 'lucide-react';
 import TypingSubtitle from './TypingSubtitle';
 
 const Hero: React.FC = () => {
@@ -23,34 +23,35 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 animate-gradient opacity-20"></div>
+      {/* Enhanced Animated Background */}
+      <div className="absolute inset-0 animate-gradient opacity-15"></div>
       
-      {/* Floating Particles */}
+      {/* Enhanced Floating Particles */}
       <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(30)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-white/20 rounded-full"
+            className="absolute w-1 h-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -100, 0],
+              y: [0, -150, 0],
               opacity: [0, 1, 0],
+              scale: [0, 1, 0],
             }}
             transition={{
-              duration: 10 + Math.random() * 10,
+              duration: 15 + Math.random() * 10,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: Math.random() * 8,
             }}
           />
         ))}
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column - Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -58,95 +59,155 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8 mt-16"
           >
-            <motion.h1
-              className="text-5xl lg:text-7xl font-bold leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <span className="block text-xl lg:text-2xl text-gray-300 mb-2">Hello, I'm</span>
-              <span className="gradient-text">Chetan</span>
-              <br />
-              <span className="text-white">Sethy</span>
-            </motion.h1>
-
-            {/* Typing Animation for Subtitle */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="space-y-2"
+            >
+              <span className="text-xl lg:text-2xl text-gray-300 font-light">Hello, I'm</span>
+              <h1 className="text-6xl lg:text-8xl font-black leading-tight">
+                <span className="gradient-text">Chetan</span>
+                <br />
+                <span className="text-white">Sethy</span>
+              </h1>
+            </motion.div>
+
+            {/* Enhanced Typing Animation for Subtitle */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
               className="space-y-4 min-h-[40px]"
             >
               <TypingSubtitle />
-              <p className="text-lg text-gray-400">
-                I build smart AI systems on the cloud that solve real-world problems.
+              <p className="text-xl text-gray-300 leading-relaxed">
+                I build intelligent AI systems on the cloud that solve real-world problems with cutting-edge technology.
               </p>
             </motion.div>
 
-            {/* Animated Text Loop */}
+            {/* Enhanced Animated Text Loop */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
               className="flex items-center space-x-4"
             >
-              <span className="text-gray-400">Specializing in</span>
+              <span className="text-gray-400 font-medium">Specializing in</span>
               <motion.span
                 key={currentText}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="text-xl font-semibold gradient-text"
+                className="text-2xl font-bold gradient-text"
               >
                 {animatedTexts[currentText]}
               </motion.span>
             </motion.div>
 
-            {/* CTA Buttons */}
+            {/* Enhanced CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4"
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="flex flex-col sm:flex-row gap-6"
             >
               <motion.a
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-green-400 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-green-500 transition-all duration-300 text-center"
+                className="btn-primary shimmer flex items-center justify-center space-x-2 text-lg px-10 py-4"
               >
-                Get In Touch
+                <Mail className="w-5 h-5" />
+                <span>Get In Touch</span>
               </motion.a>
               <motion.a
-                href="#projects"
+                href="/resume.pdf"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 border border-white/20 text-white rounded-lg font-semibold hover:bg-white/10 transition-all duration-300 text-center"
+                className="btn-secondary shimmer flex items-center justify-center space-x-2 text-lg px-10 py-4"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                View Projects
+                <Download className="w-5 h-5" />
+                <span>Download Resume</span>
               </motion.a>
+            </motion.div>
+
+            {/* Stats Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+              className="grid grid-cols-3 gap-8 pt-8"
+            >
+              <div className="text-center">
+                <div className="text-3xl font-bold gradient-text">50+</div>
+                <div className="text-gray-400 text-sm">Projects Completed</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold gradient-text">3+</div>
+                <div className="text-gray-400 text-sm">Years Experience</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold gradient-text">100%</div>
+                <div className="text-gray-400 text-sm">Client Satisfaction</div>
+              </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Profile Photo Only */}
+          {/* Right Column - Enhanced Profile Photo */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="relative flex flex-col items-center"
           >
-            <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-gradient-to-r from-blue-500 to-green-400 shadow-lg flex items-center justify-center">
-              <img
-                src="/profile-photo.jpg"
-                alt="Chetan Sethy"
-                className="w-full h-full object-cover rounded-full"
-              />
+            <div className="relative">
+              {/* Glowing Ring Effect */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-1 animate-gradient">
+                <div className="w-full h-full rounded-full bg-black"></div>
+              </div>
+              
+              {/* Profile Image */}
+              <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-transparent shadow-2xl">
+                <img
+                  src="/profile-photo.jpg"
+                  alt="Chetan Sethy"
+                  className="w-full h-full object-cover rounded-full hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              
+              {/* Floating Tech Icons */}
+              <motion.div
+                className="absolute -top-4 -right-4 w-16 h-16 glass-effect rounded-full flex items-center justify-center"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <img src="/python.png" alt="Python" className="w-8 h-8" />
+              </motion.div>
+              
+              <motion.div
+                className="absolute -bottom-4 -left-4 w-16 h-16 glass-effect rounded-full flex items-center justify-center"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+              >
+                <img src="/tensorflow.png" alt="TensorFlow" className="w-8 h-8" />
+              </motion.div>
+              
+              <motion.div
+                className="absolute top-1/2 -right-8 w-12 h-12 glass-effect rounded-full flex items-center justify-center"
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 4, repeat: Infinity, delay: 2 }}
+              >
+                <img src="/aws.png" alt="AWS" className="w-6 h-6" />
+              </motion.div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Enhanced Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -156,10 +217,16 @@ const Hero: React.FC = () => {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center space-y-2 text-white/60"
+          className="flex flex-col items-center space-y-3 text-white/60"
         >
-          <span className="text-sm">Scroll down</span>
-          <ChevronDown className="w-5 h-5" />
+          <span className="text-sm font-medium">Scroll to explore</span>
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <motion.div
+              className="w-1 h-3 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full mt-2"
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </div>
         </motion.div>
       </motion.div>
     </section>

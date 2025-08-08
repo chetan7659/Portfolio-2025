@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
 
 * {
   margin: 0;
@@ -8,62 +9,86 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #0a0a0a;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
   color: #ffffff;
   overflow-x: hidden;
   position: relative;
+  min-height: 100vh;
 }
 
-/* Data Science SVG Network Background */
+/* Enhanced Data Science SVG Network Background */
 .data-science-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.13;
-  background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.5"><circle cx="200" cy="200" r="2" fill="%23c4ffce"/><circle cx="400" cy="400" r="2" fill="%231d6496"/><circle cx="1200" cy="300" r="2" fill="%231d6496"/><circle cx="900" cy="700" r="2" fill="%23c4ffce"/><circle cx="700" cy="200" r="2" fill="%231d6496"/><circle cx="1100" cy="600" r="2" fill="%23c4ffce"/><line x1="200" y1="200" x2="400" y2="400" stroke="%23c4ffce" stroke-width="1"/><line x1="400" y1="400" x2="1200" y2="300" stroke="%231d6496" stroke-width="1"/><line x1="1200" y1="300" x2="900" y2="700" stroke="%23c4ffce" stroke-width="1"/><line x1="900" y1="700" x2="700" y2="200" stroke="%231d6496" stroke-width="1"/><line x1="700" y1="200" x2="1100" y2="600" stroke="%23c4ffce" stroke-width="1"/></g></svg>') center center/cover no-repeat;
+  opacity: 0.08;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%),
+    url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad1" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" style="stop-color:%234F46E5;stop-opacity:0.3" /><stop offset="50%25" style="stop-color:%2306B6D4;stop-opacity:0.3" /><stop offset="100%25" style="stop-color:%23EC4899;stop-opacity:0.3" /></linearGradient></defs><g opacity="0.6"><circle cx="200" cy="200" r="3" fill="url(%23grad1)"/><circle cx="400" cy="400" r="2" fill="url(%23grad1)"/><circle cx="1200" cy="300" r="2.5" fill="url(%23grad1)"/><circle cx="900" cy="700" r="2" fill="url(%23grad1)"/><circle cx="700" cy="200" r="3" fill="url(%23grad1)"/><circle cx="1100" cy="600" r="2" fill="url(%23grad1)"/><circle cx="300" cy="600" r="2.5" fill="url(%23grad1)"/><circle cx="1000" cy="100" r="2" fill="url(%23grad1)"/><line x1="200" y1="200" x2="400" y2="400" stroke="url(%23grad1)" stroke-width="1.5"/><line x1="400" y1="400" x2="1200" y2="300" stroke="url(%23grad1)" stroke-width="1"/><line x1="1200" y1="300" x2="900" y2="700" stroke="url(%23grad1)" stroke-width="1.5"/><line x1="900" y1="700" x2="700" y2="200" stroke="url(%23grad1)" stroke-width="1"/><line x1="700" y1="200" x2="1100" y2="600" stroke="url(%23grad1)" stroke-width="1.5"/><line x1="300" y1="600" x2="1000" y2="100" stroke="url(%23grad1)" stroke-width="1"/></g></svg>') center center/cover no-repeat;
 }
 
+/* Enhanced Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, #2563eb 0%, #06b6d4 50%, #6366f1 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradientShift 6s ease infinite;
 }
 
+/* Enhanced Gradient Background */
 .gradient-bg {
-  background: linear-gradient(135deg, #2563eb 0%, #06b6d4 50%, #6366f1 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+  background-size: 300% 300%;
+  animation: gradientShift 6s ease infinite;
 }
 
+/* Enhanced Glass Effect */
 .glass-effect {
-  backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(25px) saturate(180%);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
+.glass-effect-strong {
+  backdrop-filter: blur(35px) saturate(200%);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+}
+
+/* Enhanced Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
-  border-radius: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  border-radius: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+  background: linear-gradient(135deg, #764ba2 0%, #f093fb 50%, #f5576c 100%);
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+/* Enhanced Gradient Animation */
 .animate-gradient {
-  background: linear-gradient(270deg, #1d6496, #c4ffce, #1d6496);
+  background: linear-gradient(270deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #667eea);
   background-size: 400% 400%;
   animation: gradientShift 8s ease infinite;
 }
@@ -80,28 +105,220 @@ html {
   }
 }
 
+/* Enhanced Floating Animation */
 .floating-animation {
-  animation: float 6s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
 }
 
 @keyframes float {
   0%, 100% {
-    transform: translateY(0px);
+    transform: translateY(0px) rotate(0deg);
   }
-  50% {
-    transform: translateY(-20px);
+  33% {
+    transform: translateY(-15px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-25px) rotate(-1deg);
   }
 }
 
+/* Enhanced Pulse Animation */
 .pulse-animation {
-  animation: pulse 2s infinite;
+  animation: pulse 3s infinite;
 }
 
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
+    transform: scale(1);
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.7;
+    transform: scale(1.05);
   }
+}
+
+/* New Glow Effect */
+.glow-effect {
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+  transform: translateY(-2px);
+}
+
+/* New Neon Border Effect */
+.neon-border {
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+/* New Shimmer Effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.shimmer:hover::before {
+  left: 100%;
+}
+
+/* New Typewriter Effect */
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid #667eea;
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #667eea; }
+}
+
+/* New Card Hover Effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) rotateX(5deg);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* New Button Styles */
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid rgba(102, 126, 234, 0.5);
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-secondary:hover {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+  transform: translateY(-2px);
+}
+
+/* New Section Styles */
+.section-padding {
+  padding: 80px 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* New Grid Layout */
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* New Responsive Design */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-padding {
+    padding: 60px 0;
+  }
+}
+
+/* New Loading Animation */
+.loading-dots {
+  display: inline-block;
+}
+
+.loading-dots::after {
+  content: '';
+  animation: dots 1.5s steps(5, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: ''; }
+  40% { content: '.'; }
+  60% { content: '..'; }
+  80%, 100% { content: '...'; }
+}
+
+/* New Text Selection */
+::selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: white;
+}
+
+::-moz-selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: white;
 }
