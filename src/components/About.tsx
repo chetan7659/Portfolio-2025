@@ -98,11 +98,7 @@ const About: React.FC = () => {
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-6 mt-8">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold gradient-text">1.5+</div>
-                    <div className="text-sm text-gray-400">Years Experience</div>
-                  </div>
+                <div className="grid grid-cols-2 gap-6 mt-8">
                   <div className="text-center">
                     <div className="text-3xl font-bold gradient-text">10+</div>
                     <div className="text-sm text-gray-400">Projects</div>

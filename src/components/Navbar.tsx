@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
     { name: 'Home', href: '/', isExternal: false },
     { name: 'Education', href: '#education', isExternal: true },
     { name: 'Projects', href: '/projects', isExternal: false },
-    { name: 'LinuxWorldTasks', href: '/linuxworld', isExternal: false },
+
     { name: 'Skills', href: '#skills', isExternal: true },
     { name: 'About', href: '#about', isExternal: true },
     { name: 'Contact', href: '#contact', isExternal: true },
@@ -33,15 +33,14 @@ const Navbar: React.FC = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        isScrolled
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled
           ? 'glass-effect-strong border-b border-white/10'
           : 'bg-transparent'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          
+
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -79,9 +78,8 @@ const Navbar: React.FC = () => {
                 >
                   <Link
                     to={item.href}
-                    className={`text-gray-300 hover:text-white transition-all duration-300 relative group font-medium ${
-                      location.pathname === item.href ? 'text-white' : ''
-                    }`}
+                    className={`text-gray-300 hover:text-white transition-all duration-300 relative group font-medium ${location.pathname === item.href ? 'text-white' : ''
+                      }`}
                   >
                     {item.name}
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full"></span>
@@ -146,9 +144,8 @@ const Navbar: React.FC = () => {
                 >
                   <Link
                     to={item.href}
-                    className={`block px-4 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 font-medium ${
-                      location.pathname === item.href ? 'text-white bg-white/10' : ''
-                    }`}
+                    className={`block px-4 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 font-medium ${location.pathname === item.href ? 'text-white bg-white/10' : ''
+                      }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}

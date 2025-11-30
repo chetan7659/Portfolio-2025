@@ -9,7 +9,7 @@ import ProjectsPage from './components/ProjectsPage';
 import TechStack from './components/TechStack';
 import About from './components/About';
 import Contact from './components/Contact';
-import LinuxWorldTasks from './components/LinuxWorldTasks';
+
 import { ThemeProvider } from './contexts/ThemeContext';
 import './App.css';
 
@@ -38,7 +38,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/linuxworld" element={<LinuxWorldTasks />} />
+
           </Routes>
         </div>
       </Router>
